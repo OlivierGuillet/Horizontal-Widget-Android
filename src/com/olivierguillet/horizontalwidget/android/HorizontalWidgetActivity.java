@@ -1,10 +1,8 @@
 package com.olivierguillet.horizontalwidget.android;
 
 import android.app.Activity;
-import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -24,10 +22,6 @@ public class HorizontalWidgetActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // gradients plus joli
-        //getWindow().setFormat(PixelFormat.RGBA_8888);
-        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_DITHER);
-
         setContentView(R.layout.main);
 
         // tableau d'items
@@ -43,6 +37,7 @@ public class HorizontalWidgetActivity extends Activity {
         ArrayAdapter<String> arr = new ArrayAdapter<String>(this, R.layout.gallery_item, tabStr);
         gallery.setAdapter(arr);
 
+        // listener sur la Gallery
         gallery.setOnItemSelectedListener(new OnItemSelectedListener() {
 
             @Override
