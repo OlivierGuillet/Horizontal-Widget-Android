@@ -1,13 +1,16 @@
 package com.olivierguillet.horizontalwidget.android;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.Gallery;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
+
+import com.olivierguillet.horizontalwidget.android.widget.HorizontalWidget;
 
 /**
  * @author Olivier Guillet
@@ -15,44 +18,45 @@ import android.widget.TextView;
  */
 public class HorizontalWidgetActivity extends Activity {
 
+    private List<String> items;
+    
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.main);
 
-        // tableau d'items
-        final String[] tabStr = new String[20];
+        // liste d'items pour le widget
+        items = new ArrayList<String>();
         for (int i = 0; i < 20; i++) {
-            tabStr[i] = (new Integer(i + 1)).toString();
-        }
-
-        // composant natif Gallery
-        // une Gallery est un widget affichant une liste d'items de manière horizontale
-        // et positionnant l'élément sélectionné de manière centrée
-        Gallery gallery = (Gallery) this.findViewById(R.id.gallery);
-        ArrayAdapter<String> arr = new ArrayAdapter<String>(this, R.layout.gallery_item, tabStr);
-        gallery.setAdapter(arr);
-
+            items.add((new Integer(i + 1)).toString());
+        }        
+        HorizontalWidget hw = (HorizontalWidget) this.findViewById(R.id.hw);
+        hw.setListItems(items);
+         
+        // initialisation de l'adapter
+        hw.initWidget();
+        
         // listener sur la Gallery
-        gallery.setOnItemSelectedListener(new OnItemSelectedListener() {
-
+        hw.getGallery().setOnItemSelectedListener(new OnItemSelectedListener() {
+    
             @Override
-            public void onItemSelected(AdapterView parent, View view, int position, long id) {
-                TextView txt = (TextView) findViewById(R.id.text);
-                txt.setText("Selected : " + tabStr[position]);
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateSelected(items.get(position));
             }
-
+    
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub                
             }
-
-        });
-
+    
+        });          
     }
-
+    
+    public void updateSelected(String text) {
+        TextView txt = (TextView) findViewById(R.id.text);
+        txt.setText("Selected : " + text);
+    }
 }

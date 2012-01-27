@@ -1,43 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/text"
+    <com.olivierguillet.horizontalwidget.android.widget.HorizontalWidget
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="150dp"
-        android:gravity="center_horizontal"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />    
-    
-    <Gallery
-        android:id="@+id/gallery"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#eaeaea"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:spacing="10dp" />
+        android:layout_height="fill_parent" 
+        android:id="@+id/hw"/>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:layout_alignTop="@+id/current"
-        android:background="#bdbdbd" />    
-    
-    <ImageView
-        android:id="@+id/current"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/gallery"
-        android:layout_centerInParent="true"
-        android:src="@drawable/indicator_current" />    
-       
-</RelativeLayout>
+</LinearLayout>
