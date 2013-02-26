@@ -13,10 +13,22 @@ bin/
 gen/
 coverage/
 target/
+out/
 
 # Local configuration file (sdk path, etc)
 local.properties
-.settings
+
+# Eclipse project files
+.metadata/
+.settings/
 .classpath
 .project
+
+# IntelliJ IDEA project files
+.idea/
+*.iml
+*.iws
+
+# Mac OS
 .DS_Store
+
